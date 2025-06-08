@@ -5,26 +5,26 @@
 #include <vector>
 #include <memory>
 #include <algorithm>
-class PermutationTree {
+class PMTree {
  public:
-  struct PermNode {
+  struct PMNode {
     char symbol;
     std::vector<std::unique_ptr<PermNode>> branches;
     size_t subtree_count;
-    explicit PermNode(char sym) : symbol(sym), subtree_count(0) {}
+    explicit PMNode(char sym) : symbol(sym), subtree_count(0) {}
   };
-  explicit PermutationTree(const std::vector<char>& elements);
+  explicit PMTree(const std::vector<char>& elements);
   size_t count() const {return total_count;}
-  const PermNode* getRoot() const {return root.get();}
+  const PMNode* getRoot() const {return root.get();}
  private:
-  std::unique_ptr<PermNode> root;
+  std::unique_ptr<PMNode> root;
   size_t total_count;
-  void buildSubtree(PermNode* node, std::vector<char> remaining);
+  void buildSubtree(PMNode* node, std::vector<char> remaining);
 };
 std::vector<std::vector<char>> generateAllPermutations(
-    const PermutationTree& tree);
-std::vector<char> getPermutationByIndex1(
-    const PermutationTree& tree, int index);
-std::vector<char> getPermutationByIndex2(
-    const PermutationTree& tree, int index);
+    const PMTree& tree);
+std::vector<char> getPerm1(
+    const PMTree& tree, int index);
+std::vector<char> getPerm2(
+    const PMTree& tree, int index);
 #endif  // INCLUDE_TREE_H_
