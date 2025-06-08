@@ -38,7 +38,7 @@ void runPerformanceTest() {
     results << n << "," <<
         time_all << "," << time_idx1 << "," << time_idx2 << "\n";
     std::cout
-        << "Tested n=" << n << " | Times: " << time_all << "s,"
+        << "Tested n=" << n << "Times: " << time_all << "s,"
             << time_idx1 << "s, " << time_idx2 << "s\n";
   }
   results.close();
@@ -53,8 +53,7 @@ int main() {
   }
   auto p2 = getPermutationByIndex2(tree, 2);
   for (char c : p2) std::cout << c;
-  std::cout << "\n"
-
+  std::cout << "\n";
   runPerformanceTest();
   return 0;
 }
