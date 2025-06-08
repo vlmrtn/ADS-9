@@ -79,7 +79,8 @@ std::vector<char> getPermutationByIndex1(
 
 std::vector<char> getPermutationByIndex2(
     const PermutationTree& tree, int index) {
-  if (index < 1 || !tree.getRoot() || static_cast<size_t>(index) > tree.count()) {
+  if (index < 1 || !tree.getRoot() ||
+      static_cast<size_t>(index) > tree.count()) {
     return {};
   }
   std::vector<char> permutation;
@@ -88,7 +89,8 @@ std::vector<char> getPermutationByIndex2(
   while (!current->branches.empty()) {
     size_t selected = 0;
     while (selected < current->branches.size() && 
-          remaining >= static_cast<int>(current->branches[selected]->subtree_count)) {
+          remaining >= static_cast<int>(
+              current->branches[selected]->subtree_count)) {
       remaining -= current->branches[selected]->subtree_count;
       selected++;
     }
