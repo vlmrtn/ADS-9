@@ -88,7 +88,7 @@ std::vector<char> getPermutationByIndex2(
   int remaining = index - 1;
   while (!current->branches.empty()) {
     size_t selected = 0;
-    while (selected < current->branches.size() && 
+    while (selected < current->branches.size() &&
           remaining >= static_cast<int>(
               current->branches[selected]->subtree_count)) {
       remaining -= current->branches[selected]->subtree_count;
