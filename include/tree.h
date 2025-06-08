@@ -21,7 +21,10 @@ class PermutationTree {
   size_t total_count;
   void buildSubtree(PermNode* node, std::vector<char> remaining);
 };
-std::vector<std::vector<char>> generateAllPermutations(const PermutationTree& tree);
-std::vector<char> getPermutationByIndex1(const PermutationTree& tree, int index);
-std::vector<char> getPermutationByIndex2(const PermutationTree& tree, int index);
+std::vector<std::vector<char>> generateAllPermutations(
+    const PermutationTree& tree);
+std::vector<char> getPermutationByIndex1(
+    const PermutationTree& tree, int index);
+std::vector<char> getPermutationByIndex2(
+    const PermutationTree& tree, int index);
 #endif  // INCLUDE_TREE_H_
