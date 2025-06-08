@@ -7,23 +7,23 @@
 #include <algorithm>
 #include <vector>
 #include  "tree.h"
-PermutationTree::PermutationTree(
+PMTree::PMTree(
     const std::vector<char>& elements) : total_count(0) {
   if (elements.empty()) return;
   total_count = 1;
   for (size_t i = 2; i <= elements.size(); i++) {
     total_count *= i;
   }
-  root = std::make_unique<PermNode>('\0');
+  root = std::make_unique<PMNode>('\0');
   buildSubtree(root.get(), elements);
 }
 
-void PermutationTree::buildSubtree(
-     PermNode* node, std::vector<char> remaining) {
+void PMTree::buildSubtree(
+     PMNode* node, std::vector<char> remaining) {
   std::sort(remaining.begin(), remaining.end());
   for (size_t i = 0; i < remaining.size(); i++) {
-    node->branches.emplace_back(std::make_unique<PermNode>(remaining[i]));
-    PermNode* child = node->branches.back().get();
+    node->branches.emplace_back(std::make_unique<PMNode>(remaining[i]));
+    PMNode* child = node->branches.back().get();
     std::vector<char> new_remaining;
     for (size_t j = 0; j < remaining.size(); j++) {
       if (j != i) {
@@ -42,7 +42,7 @@ void PermutationTree::buildSubtree(
   }
 }
 
-void traverseForPermutations(const PermutationTree::PermNode* node,
+void traverseForPermutations(const PMTree::PMNode* node,
      std::vector<char>& current, std::vector<std::vector<char>>& result) {
   if (node->symbol != '\0') {
     current.push_back(node->symbol);
@@ -60,7 +60,7 @@ void traverseForPermutations(const PermutationTree::PermNode* node,
 }
 
 std::vector<std::vector<char>> generateAllPermutations(
-    const PermutationTree& tree) {
+    const PMTree& tree) {
   std::vector<std::vector<char>> result;
   if (!tree.getRoot()) return result;
   std::vector<char> path;
@@ -68,8 +68,8 @@ std::vector<std::vector<char>> generateAllPermutations(
   return result;
 }
 
-std::vector<char> getPermutationByIndex1(
-    const PermutationTree& tree, int index) {
+std::vector<char> getPerm1(
+    const PMTree& tree, int index) {
   if (index < 1 || static_cast<size_t>(index) > tree.count()) {
     return {};
   }
@@ -77,14 +77,14 @@ std::vector<char> getPermutationByIndex1(
   return all[index-1];
 }
 
-std::vector<char> getPermutationByIndex2(
-    const PermutationTree& tree, int index) {
+std::vector<char> getPerm2(
+    const PMTree& tree, int index) {
   if (index < 1 || !tree.getRoot() ||
       static_cast<size_t>(index) > tree.count()) {
     return {};
   }
   std::vector<char> permutation;
-  const PermutationTree::PermNode* current = tree.getRoot();
+  const PMTree::PMNode* current = tree.getRoot();
   int remaining = index - 1;
   while (!current->branches.empty()) {
     size_t selected = 0;
