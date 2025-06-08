@@ -38,8 +38,8 @@ void runPerformanceTest() {
     results << n << "," <<
         time_all << "," << time_idx1 << "," << time_idx2 << "\n";
     std::cout
-        << "Tested n=" << n << " | Times: " << time_all << "s,
-            " << time_idx1 << "s, " << time_idx2 << "s\n";
+        << "Tested n=" << n << " | Times: " << time_all << "s,"
+            << time_idx1 << "s, " << time_idx2 << "s\n";
   }
   results.close();
 }
