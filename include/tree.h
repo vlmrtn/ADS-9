@@ -9,7 +9,7 @@ class PMTree {
  public:
   struct PMNode {
     char symbol;
-    std::vector<std::unique_ptr<PermNode>> branches;
+    std::vector<std::unique_ptr<PMNode>> branches;
     size_t subtree_count;
     explicit PMNode(char sym) : symbol(sym), subtree_count(0) {}
   };
