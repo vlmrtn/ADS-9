@@ -15,7 +15,7 @@ void runPerformanceTest() {
     for (int i = 0; i < n; i++) {
       elements[i] = 'A' + i;
     }
-    PermutationTree tree(elements);
+    PMTree tree(elements);
     size_t total = tree.count();
     if (total == 0) continue;
     std::uniform_int_distribution<int> dist(1, total);
@@ -27,12 +27,12 @@ void runPerformanceTest() {
     double time_all = std::chrono::duration<double>(end - start).count();
     // Test getPermutationByIndex1
     start = std::chrono::high_resolution_clock::now();
-    auto perm1 = getPermutationByIndex1(tree, test_index);
+    auto perm1 = getPerm1(tree, test_index);
     end = std::chrono::high_resolution_clock::now();
     double time_idx1 = std::chrono::duration<double>(end - start).count();
     // Test getPermutationByIndex2
     start = std::chrono::high_resolution_clock::now();
-    auto perm2 = getPermutationByIndex2(tree, test_index);
+    auto perm2 = getPerm2(tree, test_index);
     end = std::chrono::high_resolution_clock::now();
     double time_idx2 = std::chrono::duration<double>(end - start).count();
     results << n << "," <<
@@ -45,13 +45,13 @@ void runPerformanceTest() {
 }
 int main() {
   std::vector<char> test = {'1', '2', '3'};
-  PermutationTree tree(test);
+  PMTree tree(test);
   auto perms = generateAllPermutations(tree);
   for (const auto& p : perms) {
     for (char c : p) std::cout << c;
     std::cout << " ";
   }
-  auto p2 = getPermutationByIndex2(tree, 2);
+  auto p2 = getPerm2(tree, 2);
   for (char c : p2) std::cout << c;
   std::cout << "\n";
   runPerformanceTest();
