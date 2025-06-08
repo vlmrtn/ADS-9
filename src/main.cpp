@@ -19,26 +19,25 @@ void runPerformanceTest() {
     if (total == 0) continue;
     std::uniform_int_distribution<int> dist(1, total);
     int test_index = dist(gen);
-    
     // Test generateAllPermutations
     auto start = std::chrono::high_resolution_clock::now();
     auto all = generateAllPermutations(tree);
     auto end = std::chrono::high_resolution_clock::now();
     double time_all = std::chrono::duration<double>(end - start).count();
-    
     // Test getPermutationByIndex1
     start = std::chrono::high_resolution_clock::now();
     auto perm1 = getPermutationByIndex1(tree, test_index);
     end = std::chrono::high_resolution_clock::now();
     double time_idx1 = std::chrono::duration<double>(end - start).count();
-        
     // Test getPermutationByIndex2
     start = std::chrono::high_resolution_clock::now();
     auto perm2 = getPermutationByIndex2(tree, test_index);
     end = std::chrono::high_resolution_clock::now();
     double time_idx2 = std::chrono::duration<double>(end - start).count();
-    results << n << "," << time_all << "," << time_idx1 << "," << time_idx2 << "\n";
-    std::cout << "Tested n=" << n << " | Times: " << time_all << "s, " << time_idx1 << "s, " << time_idx2 << "s\n";
+    results << n << "," <<
+        time_all << "," << time_idx1 << "," << time_idx2 << "\n";
+    std::cout
+        << "Tested n=" << n << " | Times: " << time_all << "s, " << time_idx1 << "s, " << time_idx2 << "s\n";
   }
   results.close();
 }
